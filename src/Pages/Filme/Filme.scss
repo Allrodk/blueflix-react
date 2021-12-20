@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.imagemBg {
+  content: "";
+  position: fixed;
+  max-width: auto;
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100%;
+  filter: hue-rotate(165deg) opacity(90%);
+  z-index: -1;
+}
+
+.filme {
+  width: 100%;
+  height: 100%;
+
+  &__card {
+    margin-top: 1rem;
+    margin-left: 0.3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: center;
+    text-align: justify;
+    gap: 0.8rem;
+    width: 21rem;
+    height: 100vh;
+    font-size: 1em;
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    filter: opacity(90%);
+
+    &__titulo {
+      font-weight: bold;
+      font-size: 2em;
+      text-align: center;
+      background-color: transparent;
+      color: white;
+    }
+
+    &__genero {
+      background-color: transparent;
+
+      &__descricao,
+      &__item {
+        background-color: transparent;
+        color: white;
+      }
+
+      &__descricao {
+        font-weight: bold;
+        font-size: 1.3em;
+      }
+    }
+
+    &__ano {
+      background-color: transparent;
+
+      &__descricao,
+      &__item {
+        background-color: transparent;
+        color: white;
+      }
+
+      &__descricao {
+        font-weight: bold;
+        font-size: 1.3em;
+      }
+    }
+
+    &__atores {
+      background-color: transparent;
+
+      &__descricao,
+      &__item {
+        background-color: transparent;
+        color: white;
+      }
+
+      &__descricao {
+        font-weight: bold;
+        font-size: 1.3em;
+      }
+    }
+
+    &__sinopse {
+      background-color: transparent;
+
+      &__descricao,
+      &__texto {
+        background-color: transparent;
+        color: white;
+      }
+
+      &__descricao {
+        font-weight: bold;
+        font-size: 1.3em;
+      }
+    }
+
+    &__btn {
+      display: flex;
+      justify-content: space-evenly;
+      background-color: transparent;
+
+      &__descricao,
+      &__texto {
+        background-color: transparent;
+        color: white;
+      }
+
+      &__descricao {
+        font-weight: bold;
+        font-size: 1.3em;
+      }
+    }
+  }
+}
+
+#cadastrar,
+#cancelar {
+  margin-top: 0.0;
+  padding: 0.5rem 1rem;
+  width: 100px;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  filter: hue-rotate(165deg);
+}
+
+#cadastrar {
+  background-color: lightgreen;
+  color: black;
+}
+#cancelar {
+  background-color: white;
+  color: red;
+}
+
+#cadastrar:hover,
+#cancelar:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 100ms;
+}
+#cancelar:hover {
+  background-color: red;
+  color: white;
+}
