@@ -18,6 +18,11 @@
   z-index: -1;
 }
 
+.imgAssistido {
+  width: 100px;
+  height: auto; 
+}
+
 .filme {
   width: 100%;
   height: 100%;
@@ -43,12 +48,21 @@
       rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     filter: opacity(90%);
 
-    &__titulo {
+    &__topo{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: transparent;
+    }
+    &__titulo {     
       font-weight: bold;
-      font-size: 2em;
+      font-size: 1.8em;
       text-align: center;
       background-color: transparent;
       color: white;
+    }
+    &__assistido {
+      background-color: transparent;
     }
 
     &__genero {
@@ -130,9 +144,9 @@
   }
 }
 
-#cadastrar,
-#cancelar {
-  margin-top: 0.0;
+.editar,
+.excluir {
+  margin-top: 0;
   padding: 0.5rem 1rem;
   width: 100px;
   border-radius: 10px;
@@ -142,22 +156,22 @@
   filter: hue-rotate(165deg);
 }
 
-#cadastrar {
+.editar {
   background-color: lightgreen;
   color: black;
 }
-#cancelar {
+.excluir {
   background-color: white;
   color: red;
 }
 
-#cadastrar:hover,
-#cancelar:hover {
+.editar:hover,
+.excluir:hover {
   cursor: pointer;
   transform: scale(1.1);
   transition: 100ms;
 }
-#cancelar:hover {
+.excluir:hover {
   background-color: red;
   color: white;
 }

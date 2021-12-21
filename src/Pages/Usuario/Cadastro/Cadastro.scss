@@ -51,8 +51,8 @@ input {
   }
 }
 
-#cadastrar,
-#cancelar {
+.cadastrar,
+.cancelar {
   margin-top: 0.5rem;
   padding: 0.5rem 1rem;
   width: 100px;
@@ -62,22 +62,22 @@ input {
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
-#cadastrar {
+.cadastrar {
   background-color: lightgreen;
   color: black;
 }
-#cancelar {
+.cancelar {
   background-color: white;
   color: red;
 }
 
-#cadastrar:hover,
-#cancelar:hover {
+.cadastrar:hover,
+.cancelar:hover {
   cursor: pointer;
   transform: scale(1.1);
   transition: 100ms;
 }
-#cancelar:hover {
+.cancelar:hover {
   background-color: red;
   color: white;
 }

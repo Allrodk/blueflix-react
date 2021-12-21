@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  background-color: lightcyan;
+}
+
+.perfil {
+  padding: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__nome,
+  &__card {
+    width: 19rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: lightblue;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+  &__nome {
+    margin: 0;
+    padding-top: 0.5rem;
+    text-align: center;
+  }
+
+  &__card {
+    &__item {
+      display: flex;
+      flex-direction: column;
+      background-color: transparent;
+
+      &__descricao {
+        background-color: transparent;
+      }
+    }
+
+    &__btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      background-color: transparent;
+    }
+  }
+}
+
+.usuarioEditar,
+.usuarioLogout {
+  margin-top: 0;
+  padding: 0.5rem 1rem;
+  width: 100px;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  //   filter: hue-rotate(165deg);
+}
+
+.usuarioEditar {
+  background-color: lightgreen;
+  color: black;
+}
+.usuarioLogout {
+  background-color: white;
+  color: red;
+}
+
+.usuarioEditar:hover,
+.usuarioLogout:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 100ms;
+}
+.usuarioLogout:hover {
+  background-color: red;
+  color: white;
+}

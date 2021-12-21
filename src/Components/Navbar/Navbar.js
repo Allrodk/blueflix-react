@@ -1,8 +1,60 @@
 import "./Navbar.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Auth from "../../Auth/Auth";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [montado, setMontado] = useState(false);
+  const [menu, setMenu] = useState([]);
+
+  const navigate = useNavigate();
+  const deslogado = [
+    {
+      href: "/",
+      link: "Home",
+    },
+    {
+      href: "/usuario/login",
+      link: "Login",
+    },
+    {
+      href: "/usuario/cadastro",
+      link: "Cadastro",
+    },
+  ];
+  const logado = [
+    {
+      href: "/filme/lista",
+      link: "Filmes",
+    },
+    {
+      href: "/usuario/perfil",
+      link: "Perfil",
+    },
+    {
+      href: "/",
+      link: "Logout",
+    },
+  ];
+
+  Auth();
+  const getPerfil = async () => {
+    await axios
+      .get(`/auth/profile`)
+      .then((response) => {       
+        setMenu(logado);
+      })
+      .catch((error) => {       
+        setMenu(deslogado);
+      });
+  };
+
+  useEffect(() => {
+    setMontado(true);
+    getPerfil();
+  }, [montado]);
 
   const handleAbreMenu = () => {
     if (!open) {
@@ -18,39 +70,53 @@ function Navbar() {
 
   const handleClick = () => {
     setOpen(false);
-    console.log("Fechou!!!");
   };
   const handleMouseOut = () => {
     setOpen(false);
   };
 
+  function handleHome() {
+    navigate(menu[0].href);
+  }
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+  }
+
   return (
     <div className="navbar">
       <h1 className="navbar__title">
-        <a href="/">BlueFlix</a>
+        <a href="#foo" onClick={handleHome}>
+          Blueflix
+        </a>
       </h1>
       <ul
         className={open ? "navbar__links active" : "navbar__links"}
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
-        <li className="navbar__links__items" onClick={handleClick}>
-          <a href="/">Home</a>
-        </li>
-        <li className="navbar__links__items" onClick={handleClick}>
-          <a href="/login">Login</a>
-        </li>
-        <li className="navbar__links__items" onClick={handleClick}>
-          <a href="/cadastro">Cadastro</a>
-        </li>
-        {/* <li className="navbar__links__items" onClick={handleClick}>
-          <a href="/filme">Filme</a>
-        </li> */}
+        {/* Cria lista de menu  */}
+        {menu.map((item, indice) => {
+          if (item.link === "Logout")
+            return (
+              <li className="navbar__links__items" onClick={handleLogout}>
+                <a href={item.href}>{item.link}</a>
+              </li>
+            );
+          else
+            return (
+              <li className="navbar__links__items" onClick={handleClick}>
+                <a href={item.href}>{item.link}</a>
+              </li>
+            );
+        })}
       </ul>
       <div className="navbar__hamburger" onClick={handleAbreMenu}>
-        <span className="navbar__hamburger__items"></span>
-        <span className="navbar__hamburger__items"></span>
-        <span className="navbar__hamburger__items"></span>
+        <a href="#foo">
+          <span className="navbar__hamburger__items"></span>
+          <span className="navbar__hamburger__items"></span>
+          <span className="navbar__hamburger__items"></span>
+        </a>
       </div>
     </div>
   );

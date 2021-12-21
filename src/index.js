@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Cadastro from "./Pages/Cadastro/Cadastro";
-import Login from "./Pages/Login/Login";
+import CadastroUsuario from "./Pages/Usuario/Cadastro/Cadastro";
+import Login from "./Pages/Usuario/Login/Login";
+import Perfil from "./Pages/Usuario/Perfil/Perfil";
 import Home from "./Pages/Home/Home";
-import Filme from "./Pages/Filme/Filme";
+import ListaFilme from './Pages/Filme/Lista/Lista'
+import DetalhesFilme from "./Pages/Filme/Detalhes/Destalhes";
+import CadastrarFilme from "./Pages/Filme/Cadastro/Cadastro";
+import EditarFilme from "./Pages/Filme/Editar/Editar";
 import Navbar from "./Components/Navbar/Navbar";
 import axios from "axios";
 
@@ -19,9 +23,13 @@ ReactDOM.render(
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/filme" element={<Filme />} />
-        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/usuario/cadastro" element={<CadastroUsuario />} />
+        <Route path="/usuario/login" element={<Login />} />
+        <Route path="/usuario/perfil" element={<Perfil />} />
+        <Route path="/filme/lista" element={<ListaFilme />} />
+        <Route path="/filme/detalhes" element={<DetalhesFilme />} />
+        <Route path="/filme/cadastro" element={<CadastrarFilme />} />
+        <Route path="/filme/editar" element={<EditarFilme />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

@@ -30,6 +30,7 @@ export default function Cadastro() {
       console.log(response.data);
       if (response.statusText === "Created") {
         message = "Cadastro efetuado com sucesso";
+        console.log(message);
         Cancelar();
       }
     });
@@ -91,10 +92,10 @@ export default function Cadastro() {
         </div>
         <div className="cadastro__form__item">
           <div className="cadastro__form__item__btn">
-            <button id="cadastrar" type="submit">
+            <button className="cadastrar" type="submit">
               Cadastrar
             </button>
-            <button id="cancelar" type="button" onClick={Cancelar}>
+            <button className="cancelar" type="button" onClick={Cancelar}>
               Cancelar
             </button>
           </div>
