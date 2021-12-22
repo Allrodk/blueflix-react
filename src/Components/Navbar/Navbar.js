@@ -27,7 +27,11 @@ function Navbar() {
   const logado = [
     {
       href: "/filme/lista",
-      link: "Filmes",
+      link: "Todos os Filmes",
+    },
+    {
+      href: "/usuario/assistido",
+      link: "Filmes Assistidos",
     },
     {
       href: "/usuario/perfil",

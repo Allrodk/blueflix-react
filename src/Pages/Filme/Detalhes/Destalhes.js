@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Detalhes.scss";
 import axios from "axios";
+let filmeAtual = "";
 
 function Filme() {
   const location = useLocation();
@@ -14,14 +15,6 @@ function Filme() {
   const [assistido, setAssistido] = useState("");
   const [urlAss, setUrlAss] = useState(require("../../../image/estrela0.jpg"));
 
-  function delay(milliseconds) {
-    var start = new Date().getTime();
-    var end = 0;
-    while (end - start < milliseconds) {
-      end = new Date().getTime();
-    }
-  }
-
   const getFilme = async () => {
     await axios
       .get(`/movie/findUnique/${location.state}`)
@@ -30,21 +23,30 @@ function Filme() {
           setFilme(respFilmes.data);
           setAtores(respFilmes.data.cast);
           setGeneros(respFilmes.data.genres);
+          filmeAtual = respFilmes.data;
         }
       });
+    // return () => setMontado(false);
   };
 
   const getAssistido = async () => {
+    console.log(filme);
     await axios
       .get(`/user/seeList`)
       .then((response) => {
         if (montado) {
           if (response.data.length > 0) {
+            let cont = 0;
             response.data.map((checar) => {
-              if (checar.id === filme.id) {
-                setUrlAss(require("../../../image/estrela1.jpg"));
+              if (checar.id === filmeAtual.id) {
+                cont += 1;
               }
-              setAssistido(checar.id);
+              if (cont > 0) {
+                setUrlAss(require("../../../image/estrela1.jpg"));
+              } else {
+                setUrlAss(require("../../../image/estrela0.jpg"));
+              }
+              setAssistido(checar.id);              
             });
           } else {
             setUrlAss(require("../../../image/estrela0.jpg"));
@@ -63,6 +65,8 @@ function Filme() {
       } else {
         await axios.patch(`/user/addList/${filme.id}`).then((response) => {});
       }
+      getFilme();
+      getAssistido();
     }
   };
 
@@ -70,7 +74,7 @@ function Filme() {
     setMontado(true);
     getFilme();
     getAssistido();
-  }, [montado, filme, assistido]);
+  }, [montado]);
 
   function handleEditar() {
     navigate("/filme/editar");
@@ -93,6 +97,7 @@ function Filme() {
                 src={urlAss}
                 alt="Assistido"
                 onClick={handleAssistido}
+                // onLoad={getAssistido}
               ></img>
             </div>
           </div>
