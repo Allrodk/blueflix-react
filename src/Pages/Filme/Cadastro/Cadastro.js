@@ -35,6 +35,7 @@ export default function CadastrarFilme() {
       console.log(response.data);
       if (response.statusText === "Created") {
         message = "Filme cadastrado com sucesso";
+        console.log(message);
         Voltar();
       }
     });

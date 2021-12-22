@@ -11,52 +11,66 @@ function Filme() {
   const [atores, setAtores] = useState([]);
   const [generos, setGeneros] = useState([]);
   const [montado, setMontado] = useState(false);
-  // const [assistido, setAssistido] = useState("");
-  const [urlAss, setUrlAss] = useState("");
+  const [assistido, setAssistido] = useState("");
+  const [urlAss, setUrlAss] = useState(require("../../../image/estrela0.jpg"));
+
+  function delay(milliseconds) {
+    var start = new Date().getTime();
+    var end = 0;
+    while (end - start < milliseconds) {
+      end = new Date().getTime();
+    }
+  }
 
   const getFilme = async () => {
-    await axios.get(`/movie/findUnique/${location.state}`).then((response) => {
-      if (montado) {
-        setFilme(response.data);
-        setAtores(response.data.cast);
-        setGeneros(response.data.genres);
-      }
-    });
+    await axios
+      .get(`/movie/findUnique/${location.state}`)
+      .then((respFilmes) => {
+        if (montado) {
+          setFilme(respFilmes.data);
+          setAtores(respFilmes.data.cast);
+          setGeneros(respFilmes.data.genres);
+        }
+      });
   };
 
   const getAssistido = async () => {
-    await axios.get(`/user/seeList`).then((response) => {
-      response.data.map((usufilme) => {
+    await axios
+      .get(`/user/seeList`)
+      .then((response) => {
         if (montado) {
-          if (usufilme.id === filme.id) {
-            setUrlAss(require("../../../image/estrela1.jpg"));
+          if (response.data.length > 0) {
+            response.data.map((checar) => {
+              if (checar.id === filme.id) {
+                setUrlAss(require("../../../image/estrela1.jpg"));
+              }
+              setAssistido(checar.id);
+            });
           } else {
             setUrlAss(require("../../../image/estrela0.jpg"));
           }
-          // setAssistido(usufilme.id);
         }
+      })
+      .catch((error) => {
+        console.log(`Perfil: ${error}`);
       });
-    });
   };
 
-  // const handleAssistido = async () => {
-  //   if (assistido === filme.id) {
-  //     await axios
-  //       .patch(`/user/addList/${assistido}`)
-  //       .then((response) => {
-  //         console.log(response);
-  //       })
-  //       .catch((error) => {
-  //         console.log(`Perfil: ${error}`);
-  //       });
-  //   }
-  // };
+  const handleAssistido = async () => {
+    if (montado) {
+      if (assistido === filme.id) {
+        await axios.patch(`/user/addList/${assistido}`).then((response) => {});
+      } else {
+        await axios.patch(`/user/addList/${filme.id}`).then((response) => {});
+      }
+    }
+  };
 
   useEffect(() => {
     setMontado(true);
     getFilme();
     getAssistido();
-  }, [montado, urlAss, filme]);
+  }, [montado, filme, assistido]);
 
   function handleEditar() {
     navigate("/filme/editar");
@@ -78,7 +92,7 @@ function Filme() {
                 className="imgAssistido"
                 src={urlAss}
                 alt="Assistido"
-                // onClick={handleAssistido}
+                onClick={handleAssistido}
               ></img>
             </div>
           </div>
