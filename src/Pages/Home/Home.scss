@@ -11,22 +11,18 @@
   justify-content: space-evenly;
   height: 100vh;
   gap: 0.8rem;
-  
 
   &__item {
     padding: 1rem;
-    background-color: lightskyblue;
-    color: white;
-    opacity: 0.9;
+    background-color: lightskyblue;   
     box-shadow: 1px;
     border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;     
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 
     &__link {
       color: white;
-      
     }
 
     &__link:hover {

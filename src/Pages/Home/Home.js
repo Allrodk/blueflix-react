@@ -1,6 +1,6 @@
 import "./Home.scss";
 
-function Home() {  
+function Home() {
   return (
     <div className="home">
       <h2 className="home__item">
