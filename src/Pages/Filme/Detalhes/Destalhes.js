@@ -13,7 +13,7 @@ function Filme() {
   const [generos, setGeneros] = useState([]);
   const [montado, setMontado] = useState(false);
   const [assistido, setAssistido] = useState("");
-  const [urlAss, setUrlAss] = useState(require("../../../image/estrela0.jpg"));
+  const [urlAss, setUrlAss] = useState(require("../../../image/estrela0.png"));
 
   const getFilme = async () => {
     await axios
@@ -26,7 +26,7 @@ function Filme() {
           filmeAtual = respFilmes.data;
         }
       });
-    // return () => setMontado(false);
+    
   };
 
   const getAssistido = async () => {
@@ -42,14 +42,14 @@ function Filme() {
                 cont += 1;
               }
               if (cont > 0) {
-                setUrlAss(require("../../../image/estrela1.jpg"));
+                setUrlAss(require("../../../image/estrela1.png"));
               } else {
-                setUrlAss(require("../../../image/estrela0.jpg"));
+                setUrlAss(require("../../../image/estrela0.png"));
               }
               setAssistido(checar.id);              
             });
           } else {
-            setUrlAss(require("../../../image/estrela0.jpg"));
+            setUrlAss(require("../../../image/estrela0.png"));
           }
         }
       })
