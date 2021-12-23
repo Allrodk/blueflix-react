@@ -47,10 +47,10 @@ function Navbar() {
   const getPerfil = async () => {
     await axios
       .get(`/auth/profile`)
-      .then((response) => {       
+      .then((response) => {
         setMenu(logado);
       })
-      .catch((error) => {       
+      .catch((error) => {
         setMenu(deslogado);
       });
   };
@@ -60,16 +60,25 @@ function Navbar() {
     getPerfil();
   }, [montado]);
 
+  //Mecânica de funcionamento do menu responsivo
+  const [myTimeout, setMyTimeout] = useState("");
   const handleAbreMenu = () => {
     if (!open) {
       setOpen(true);
-      setTimeout(handleClick, 5000);
+      setMyTimeout(
+        setTimeout(() => {
+          handleClick();
+        }, 5000)
+      );
     } else {
       setOpen(false);
+      clearTimeout(myTimeout);
     }
   };
+
   const handleMouseOver = () => {
     setOpen(true);
+    clearTimeout(myTimeout);
   };
 
   const handleClick = () => {
@@ -103,13 +112,13 @@ function Navbar() {
         {menu.map((item, indice) => {
           if (item.link === "Logout")
             return (
-              <li className="navbar__links__items" onClick={handleLogout}>
+              <li className="navbar__links__items" onClick={handleLogout} key={item.href.toString()}>
                 <a href={item.href}>{item.link}</a>
               </li>
             );
           else
             return (
-              <li className="navbar__links__items" onClick={handleClick}>
+              <li className="navbar__links__items" onClick={handleClick} key={item.href.toString()}>
                 <a href={item.href}>{item.link}</a>
               </li>
             );
