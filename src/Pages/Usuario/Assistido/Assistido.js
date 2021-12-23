@@ -23,15 +23,18 @@ function FilmeAssistido() {
 
   return (
     <div className="assistido">
-      {filmes.map((item) => (
-        <Card
-          id={item.id}
-          titulo={item.title}
-          ano={item.year}
-          imagem={item.cover}
-          key={item.id}
-        />
-      ))}
+      {filmes.map((item) => {
+        return (
+          <Card
+            id={item.id}
+            titulo={item.title}
+            ano={item.year}
+            imagem={item.cover}
+            key={item.id}
+            visivel={true}
+          />
+        );
+      })}
     </div>
   );
 }

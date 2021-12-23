@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Detalhes.scss";
 import axios from "axios";
-let filmeAtual = "";
+let filmeAtual = { };
 
 function Filme() {
   const location = useLocation();
@@ -16,37 +16,36 @@ function Filme() {
   const [urlAss, setUrlAss] = useState(require("../../../image/estrela0.png"));
 
   const getFilme = async () => {
-    await axios
-      .get(`/movie/findUnique/${location.state}`)
-      .then((respFilmes) => {
-        if (montado) {
-          setFilme(respFilmes.data);
-          setAtores(respFilmes.data.cast);
-          setGeneros(respFilmes.data.genres);
-          filmeAtual = respFilmes.data;
-        }
-      });
-    
+    try {
+      let respFilmes = await axios.get(`/movie/findUnique/${location.state}`);
+      setFilme(respFilmes.data);
+      setAtores(respFilmes.data.cast);
+      setGeneros(respFilmes.data.genres);
+      filmeAtual = await respFilmes.data;
+    } catch (e) {}
   };
 
   const getAssistido = async () => {
-    console.log(filme);
+    getFilme();
     await axios
       .get(`/user/seeList`)
       .then((response) => {
         if (montado) {
           if (response.data.length > 0) {
-            let cont = 0;
+            let chave = false;
             response.data.map((checar) => {
-              if (checar.id === filmeAtual.id) {
-                cont += 1;
+              console.log(`Filme : ${filme.id}`);
+              console.log(`Checar: ${checar.id}`);
+              if (checar.id == filmeAtual.id) {
+                chave = true;
               }
-              if (cont > 0) {
+              console.log(`Chave: ${chave}`);
+              if (chave) {
                 setUrlAss(require("../../../image/estrela1.png"));
               } else {
                 setUrlAss(require("../../../image/estrela0.png"));
               }
-              setAssistido(checar.id);              
+              setAssistido(checar.id);
             });
           } else {
             setUrlAss(require("../../../image/estrela0.png"));

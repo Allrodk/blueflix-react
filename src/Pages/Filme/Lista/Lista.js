@@ -1,37 +1,58 @@
 import "./Lista.scss";
-import Card from '../../../Components/Card/Card';
+import Card from "../../../Components/Card/Card";
 import { useEffect, useState } from "react";
 
 import axios from "axios";
 
 function ListaFilme() {
   const [filmes, setFilmes] = useState([]);
+  const [assistido, setAssistido] = useState([]);
   const [montado, setMontado] = useState(false);
 
   const getFilmes = async () => {
-    await axios.get("/movie/findMany").then((response) => {
+    try {
+      const response = await axios.get("/movie/findMany");
       if (montado) {
         setFilmes(response.data);
       }
-    });
+    } catch (e) {}
+  };
+
+  const getAssistido = async () => {
+    try {
+      const response = await axios.get("/user/seeList");
+      if (montado) {
+        setAssistido(response.data);
+      }
+    } catch (e) {}
   };
 
   useEffect(() => {
     setMontado(true);
+    getAssistido();
     getFilmes();
   }, [montado]);
 
   return (
     <div className="lista">
-      {filmes.map((item) => (
-        <Card
-          id={item.id}
-          titulo={item.title}
-          ano={item.year}
-          imagem={item.cover}
-          key={item.id}
-        />
-      ))}
+      {filmes.map((itemF, indice) => {
+        let chave = false;
+        assistido.map((itemA) => {
+          if (itemA.id === itemF.id) {
+            chave = true;
+          }
+        });
+        return (
+          <Card
+            id={itemF.id}
+            titulo={itemF.title}
+            ano={itemF.year}
+            imagem={itemF.cover}
+            key={itemF.id}
+            visivel={chave}
+          />
+        );
+      })}
     </div>
   );
 }

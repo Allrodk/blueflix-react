@@ -2,8 +2,9 @@
   background-color: lightcyan;
 }
 
-h5{
+h5 {
   background-color: transparent;
+  text-align: center;
 }
 .card {
   padding: 0.5rem;
@@ -13,18 +14,39 @@ h5{
   gap: 0.2rem;
   width: 9rem;
   background-color: lightblue;
-  border-radius: 0.4rem;  
+  border-radius: 0.4rem;
   box-shadow: 1px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  z-index: 3;
 
-  img {
-    width: 9rem;
-    height: auto;
+  &__topo {
+    position: absolute;
+    display: flex;
+    background-color: transparent;
+    gap: 100px;
+
+    &__assistido.active {   
+      display: block;
+    }
+
+    &__assistido {
+      position: relative;
+      top: 10px;
+      left: 10px;
+      width: 40px;
+      height: auto;
+      background-color: transparent;
+      display: none;
+    }
   }
 }
 
+img {
+  width: 9rem;
+  height: auto;
+}
 .card:hover {
   cursor: pointer;
   background-color: yellowgreen;

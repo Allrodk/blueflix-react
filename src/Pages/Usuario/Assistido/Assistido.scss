@@ -1,11 +1,15 @@
 * {
   margin: 0;
-  padding: 0;
+  padding: 0;  
 }
-.assistido {
+body{
+  // margin-top: 100px;
+}
+.assistido {   
   padding-top: 4.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.8rem;
+  z-index: 10;
 }
