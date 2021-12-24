@@ -1,14 +1,13 @@
 import "./Card.scss";
 
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 function Card(props) {
   const navigate = useNavigate();
 
   const gotoFilme = () => {
     navigate("/filme/detalhes", { state: props.id });
-  };  
+  };
   return (
     <div className="card" onClick={gotoFilme}>
       <div className="card__topo">

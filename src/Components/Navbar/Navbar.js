@@ -43,18 +43,23 @@ function Navbar() {
     },
   ];
 
-  Auth();
   const getPerfil = async () => {
-    await axios
-      .get(`/auth/profile`)
-      .then((response) => {
-        setMenu(logado);
-      })
-      .catch((error) => {
-        setMenu(deslogado);
-      });
+    Auth();
+    if (localStorage.token) {
+      await axios
+        .get(`/auth/profile`)
+        .then((response) => {
+          setMenu(logado);
+        })
+        .catch((error) => {
+          setMenu(deslogado);
+          localStorage.removeItem("token");
+          navigate("/");
+        });
+    } else {
+      setMenu(deslogado);
+    }
   };
-
   useEffect(() => {
     setMontado(true);
     getPerfil();
@@ -108,17 +113,25 @@ function Navbar() {
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
-        {/* Cria lista de menu  */}
-        {menu.map((item, indice) => {
+        {/* Cria lista de menu  */}   
+        {menu.map((item) => {
           if (item.link === "Logout")
             return (
-              <li className="navbar__links__items" onClick={handleLogout} key={item.href.toString()}>
+              <li
+                className="navbar__links__items"
+                onClick={handleLogout}
+                key={item.href.toString()}
+              >
                 <a href={item.href}>{item.link}</a>
               </li>
             );
           else
             return (
-              <li className="navbar__links__items" onClick={handleClick} key={item.href.toString()}>
+              <li
+                className="navbar__links__items"
+                onClick={handleClick}
+                key={item.href.toString()}
+              >
                 <a href={item.href}>{item.link}</a>
               </li>
             );

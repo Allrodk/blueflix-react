@@ -7,7 +7,7 @@ import Perfil from "./Pages/Usuario/Perfil/Perfil";
 import FilmeAssistido from "./Pages/Usuario/Assistido/Assistido";
 import Home from "./Pages/Home/Home";
 import ListaFilme from "./Pages/Filme/Lista/Lista";
-import DetalhesFilme from "./Pages/Filme/Detalhes/Destalhes";
+import DetalhesFilme from "./Pages/Filme/Detalhes/Detalhes";
 import CadastrarFilme from "./Pages/Filme/Cadastro/Cadastro";
 import EditarFilme from "./Pages/Filme/Editar/Editar";
 import Navbar from "./Components/Navbar/Navbar";
@@ -32,7 +32,7 @@ ReactDOM.render(
         <Route path="/filme/detalhes" element={<DetalhesFilme />} />
         <Route path="/filme/cadastro" element={<CadastrarFilme />} />
         <Route path="/filme/editar" element={<EditarFilme />} />
-      </Routes>
+      </Routes>     
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

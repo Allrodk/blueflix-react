@@ -34,13 +34,13 @@ function ListaFilme() {
   }, [montado]);
 
   return (
-    <div className="lista">
-      {filmes.map((itemF, indice) => {
+    <div className="lista">      
+      {filmes.map((itemF) => {
         let chave = false;
         assistido.map((itemA) => {
           if (itemA.id === itemF.id) {
-            chave = true;
-          }
+            return chave = true;
+          }          
         });
         return (
           <Card

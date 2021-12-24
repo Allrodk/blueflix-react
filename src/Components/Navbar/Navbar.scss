@@ -1,8 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  color: #5c2751;
-  background-color: lightcyan;
+  color: #5c2751;  
 }
 
 a {
@@ -18,13 +17,14 @@ a:hover {
 }
 
 .navbar {
+  position: fixed;
+  // top: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  background-color: lightskyblue;
-  position: fixed;
+  background-color: lightskyblue;  
   opacity: 90%;
   width: 100%;
   box-shadow: 1px;
